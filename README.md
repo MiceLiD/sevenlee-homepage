@@ -31,4 +31,4 @@ server {
 }
 ```
 
-tips: npm run sript1 & npm run script2 只有在bash下&符号才生效
+tips: npm run sript1 & npm run script2 只有在bash下&符号才生效, powerShell 下请分开执行
