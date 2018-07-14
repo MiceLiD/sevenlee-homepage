@@ -9,14 +9,14 @@ webpack-dev-server & node 端口配置在config/index.js
 ## production mode
 ```
 npm run build
-sh ./start/sh
+sh ./start.sh
 ```
 
 ## production mode && nginx config
 生产模式监听unix的sockets,需要配置nginx
 ```
 upstream framework_prod {
-    server unix://{your workplace}/framework/shared/sockets/node.socks;
+    server unix:{your workspace}/koa-react-project/shared/sockets/node.sock;
 }
 server {
     port xxxx;
@@ -26,7 +26,7 @@ server {
         proxy_pass http://framework_prod;
     }
     location /static/framework {
-        alias {your workplace}/framework/static/framework/;
+        alias {your workspace}/koa-react-project/static/framework/;
     }
 }
 ```
