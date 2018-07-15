@@ -9,18 +9,6 @@ module.exports = {
     index: path.join(__dirname, '../client/index.js'),
     vendor: ['react', 'react-dom']
   },
-  optimization: {
-    splitChunks: {
-      chunks: 'initial',
-      cacheGroups: {
-        vendor: {
-          chunks: 'initial',
-          test: /\.js$/,
-          name: 'vendor'
-        }
-      }
-    }
-  },
   module: {
       rules: [
         {

@@ -7,6 +7,6 @@ import 'draft-js/dist/Draft.css'
 import './favicon.ico'
 import style from './main.css'
 
-import App from './App'
+import App from './App.js'
 
 render(<App />, document.getElementById('app'))
