@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
+import BraftEditor from 'braft-editor'
+import 'braft-editor/dist/braft.css'
 
 class App extends Component {
   constructor() {
     super()
     this.state = {
-      username: 'loading...'
+      
     }
   }
   componentWillMount() {
@@ -16,10 +18,28 @@ class App extends Component {
         })
       })
   }
+
+  handleOnChange(content) {
+    console.log(content)
+  }
+
+  handleOnRawChange(rawContent) {
+    console.log(rawContent)
+  }
+
   render() {
-    return <div style={{textAlign: 'center', paddingTop: '100px'}}>
-      no problem {this.state.username}
-    </div>
+    const editorProps = {
+      height: 500,
+      contentFormat: 'html',
+      initialContent: '<p>hello</p>',
+      onChange: this.handleOnChange,
+      onRowChange: this.handleOnRawChange
+    }
+    return (
+      <div>
+        <BraftEditor {...editorProps}></BraftEditor>
+      </div>
+    )
   }
 }
 
