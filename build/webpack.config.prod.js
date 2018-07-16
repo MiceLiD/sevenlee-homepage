@@ -14,6 +14,9 @@ module.exports = {
     path: path.join(__dirname, `../static/${moduleName}`),
     filename: '[name].[hash].js',
   },
+  performance: {
+    hints: false
+  },
   plugins: [
     new CleanWebpackPlugin([`static/${moduleName}`], {root: path.join(__dirname, '../')}),
     new MiniCssExtractPlugin({
