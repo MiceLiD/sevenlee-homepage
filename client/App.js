@@ -29,9 +29,9 @@ class App extends Component {
 
   render() {
     const editorProps = {
-      height: 500,
+      height: 700,
       contentFormat: 'html',
-      initialContent: '<p>hello</p>',
+      initialContent: '<p>welcome to sevenlee.cf</p>',
       onChange: this.handleOnChange,
       onRowChange: this.handleOnRawChange
     }
