@@ -7,7 +7,7 @@ const moduleName = config.moduleName
 module.exports = {
     xStyle: (filename) => {
         if (NODE_ENV === 'development') {
-            return `http://localhost:${config.devPort}/${filename}.css`
+            return filename === 'vendor' ? `http://localhost:${config.devPort}/${filename}.index.css` : `http://localhost:${config.devPort}/${filename}.css`
         } else {
             let data = fs.readFileSync(path.join(__dirname, `../static/${moduleName}/manifest.json`), 'utf-8')
             data = JSON.parse(data)

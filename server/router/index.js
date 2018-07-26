@@ -7,12 +7,20 @@ module.exports = (app) => {
       }
     })
   })
-  app.get('/', async ctx => {
+  app.get('/', ctx => {
+    ctx.redirect('/index')
+  })
+  app.get('/index', async ctx => {
     await ctx.render('index', {
-      title: 'framework',
+      title: 'sevenlee',
       moduleName: 'framework'
     })
-    ctx.logger.info('render /')
+  })
+  app.get('/*', async ctx => {
+    await ctx.render('index', {
+      title: 'sevenlee',
+      moduleName: 'framework'
+    })
   })
 }
 

@@ -6,8 +6,19 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   entry: {
-    index: path.join(__dirname, '../client/index.js'),
-    vendor: ['react', 'react-dom']
+    index: path.join(__dirname, '../client/main.js')
+  },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        // which includes all code from node_modules in the whole application
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendor',
+          chunks: 'all'
+        }
+      }
+    }
   },
   module: {
       rules: [

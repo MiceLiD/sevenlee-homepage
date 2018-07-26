@@ -3,9 +3,10 @@ import { render } from 'react-dom'
 import f_Request from './utils/request.js'
 window.f_Request = f_Request
 
-import 'draft-js/dist/Draft.css'
-import './favicon.ico'
-import style from './main.css'
+import 'antd/dist/antd.css'
+
+import './assets/style/main.scss'
+import './assets/img/favicon.ico'
 
 import App from './App.js'
 
