@@ -1,0 +1,21 @@
+./start.sh: line 2: pm2: command not found
+module.js:538
+    throw err;
+    ^
+
+Error: Cannot find module '/Users/didi/Desktop/server/app.js'
+    at Function.Module._resolveFilename (module.js:536:15)
+    at Function.Module._load (module.js:466:25)
+    at Function.Module.runMain (module.js:676:10)
+    at startup (bootstrap_node.js:187:16)
+    at bootstrap_node.js:608:3
+module.js:538
+    throw err;
+    ^
+
+Error: Cannot find module '/Users/didi/Desktop/server/app.js'
+    at Function.Module._resolveFilename (module.js:536:15)
+    at Function.Module._load (module.js:466:25)
+    at Function.Module.runMain (module.js:676:10)
+    at startup (bootstrap_node.js:187:16)
+    at bootstrap_node.js:608:3

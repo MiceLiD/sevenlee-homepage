@@ -3,10 +3,14 @@ const fs = require('fs')
 const views = require('koa-views')
 const Logger = require('mini-logger')
 const config = require('../config/index')
+const isDev = process.env.NODE_ENV === 'development'
 
-const NODE_ENV = process.env.NODE_ENV
+if (!isDev && !fs.existsSync(path.join(__dirname, '../static'))) {
+  throw new Error('You have not executed npm run build yet!')
+  return
+}
 
-const Koa = NODE_ENV === 'development' ? require('koa') : require('../extensions/koa.ext')
+const Koa = isDev ? require('koa') : require('../extensions/koa.ext')
 const app = new Koa()
 
 /* logger */
@@ -19,9 +23,6 @@ app.context.logger = Logger({
 /* 模板引擎 */
 app.use(views(path.join(__dirname, './views'), {
   map: { hbs: 'handlebars' },
-  options: {
-    helpers: require('../extensions/hbs.ext')
-  },
   extension: 'hbs'
 }))
 
@@ -34,7 +35,7 @@ appRouter(router)
 app.use(router.routes()).use(router.allowedMethods())
 
 /* listen */
-if (NODE_ENV === 'development') {
+if (isDev) {
   app.listen(config.nodePort)
   console.log(`development mode, server listening at ${config.nodePort}`)
 } else {

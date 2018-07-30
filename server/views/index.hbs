@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <script src="https://cdn.bootcss.com/d3/3.5.5/d3.min.js"></script>
-  <link rel="shortcut icon" href={{ xIco }}>
-  <link rel="stylesheet" href="{{ xStyle 'vendor' }}">
-  <link rel="stylesheet" href="{{ xStyle 'index' }}">
-  <title>{{ title }}</title>
-</head>
-<body>
-  <div id="app"></div>
-  <script src={{ xScript 'index' }}></script>
-  <script src={{ xScript 'vendor' }}></script>
-</body>
-</html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <script src="https://cdn.bootcss.com/d3/3.5.5/d3.min.js"></script>
+      {{ xIco }}
+      {{ xStyle }}
+      <title>{{ title }}</title>
+    </head>
+    <body>
+      <div id="app">
+        loading...
+      </div>
+      {{ xScript }}
+    </body>
+    </html>

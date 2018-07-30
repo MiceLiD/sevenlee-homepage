@@ -1,33 +1,45 @@
 const fs = require('fs')
 const path = require('path')
 const config = require('../config/index')
-const NODE_ENV = process.env.NODE_ENV
+const fetch = require('node-fetch')
+const isDev = process.env.NODE_ENV === 'development'
 const moduleName = config.moduleName
 
 module.exports = {
-    xStyle: (filename) => {
-        if (NODE_ENV === 'development') {
-            return filename === 'vendor' ? `http://localhost:${config.devPort}/${filename}.index.css` : `http://localhost:${config.devPort}/${filename}.css`
-        } else {
-            let data = fs.readFileSync(path.join(__dirname, `../static/${moduleName}/manifest.json`), 'utf-8')
-            data = JSON.parse(data)
-            return `/static/${moduleName}/${data[`static/${moduleName}/${filename}.css`]}`
-        } 
+    xIco: () => isDev ? 
+      `<link rel="shortcut icon" href="http://localhost:${config.devPort}/favicon.ico?">` : 
+      `<link rel="shortcut icon" href="/static/${moduleName}/favicon.ico">`,
+
+    xStyle: async () => {
+      let manifestArr = await getManifest('css')
+
+      return manifestArr.map(item => {
+        return `<link rel="stylesheet" href="${item}">`
+      }).join('')
     },
-    xIco: () => {
-        if (NODE_ENV === 'development') {
-            return `http://localhost:${config.devPort}/favicon.ico?`
-        } else {
-            return `/static/${moduleName}/favicon.ico`
-        }
-    },
-    xScript: (filename) => {
-        if (NODE_ENV === 'development') {
-            return `http://localhost:${config.devPort}/${filename}.js`
-        } else {
-            let data = fs.readFileSync(path.join(__dirname, `../static/${moduleName}/manifest.json`), 'utf-8')
-            data = JSON.parse(data)
-            return `/static/${moduleName}/${data[`static/${moduleName}/${filename}.js`]}`
-        }   
+    xScript: async () => {
+      let manifestArr = await getManifest('js')
+
+      return manifestArr.map(item => {
+        return `<script src="${item}"></script>`
+      }).join('')
     }
+}
+
+async function getManifest(category) {
+  if (isDev) {
+    return await fetch(`http://localhost:${config.devPort}/manifest.json`).then(res => res.json())
+      .then(json => Object.entries(json)
+        .map(item => item[1])
+        .filter(item => !item.includes('map') && item.includes(category))
+        .map(item => `http://localhost:${config.devPort}/${item}`))
+
+  } else {
+    let _json = fs.readFileSync(path.join(__dirname, `../static/${moduleName}/manifest.json`), 'utf8')
+    _json = JSON.parse(_json)
+    return Object.entries(_json)
+      .map(item => item[1])
+      .filter(item => item.includes(category))
+      .map(item => `/static/${moduleName}/${item}`)
+  }
 }
