@@ -7,7 +7,7 @@ const moduleName = config.moduleName
 
 module.exports = {
     xIco: () => isDev ? 
-      `<link rel="shortcut icon" href="http://localhost:${config.devPort}/favicon.ico?">` : 
+      `<link rel="shortcut icon" href="http://localhost:${config.devPort}/favicon.ico">` : 
       `<link rel="shortcut icon" href="/static/${moduleName}/favicon.ico">`,
 
     xStyle: async () => {
