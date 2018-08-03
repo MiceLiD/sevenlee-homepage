@@ -13,7 +13,7 @@ import ProcessEditor from './page/ProcessEditor.jsx'
 import Other from './page/Other.jsx'
 import Main from './page/Main.jsx'
 
-import './assets/style/app.scss'
+import './assets/style/app.less'
 
 class App extends Component {
   constructor() {

@@ -1,6 +1,5 @@
 const path = require('path')
 const webpack = require('webpack')
-const polyfill = require('babel-polyfill')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 
@@ -43,8 +42,8 @@ module.exports = {
             use: [MiniCssExtractPlugin.loader, 'css-loader']
         },
         {
-            test: /\.scss$/,
-            use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+            test: /\.less$/,
+            use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader']
         },
         {
             test: /\.(png|jpe?g|gif|svg|woff2?|ttf|otf|ico)(\?.*)?$/,

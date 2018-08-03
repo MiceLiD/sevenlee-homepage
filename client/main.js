@@ -5,7 +5,7 @@ window.f_Request = f_Request
 
 import 'antd/dist/antd.css'
 
-import './assets/style/main.scss'
+import './assets/style/main.less'
 import './assets/img/favicon.ico'
 
 import App from './App.js'
