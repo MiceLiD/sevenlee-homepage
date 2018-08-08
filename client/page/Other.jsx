@@ -4,7 +4,9 @@ class Other extends Component {
   render() {
     return (
       <div style={{padding: '20px'}}>
-        版本更新：hbs.ext.js 将自动找寻manifest.json文件，支持自动注入样式及脚本标签！
+        不支持老式浏览器！！<br/>
+        移除babel-polyfill <br/>
+        移除转换es6的代码
       </div>
     )
   }

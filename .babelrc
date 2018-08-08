@@ -1,7 +1,7 @@
 {
-  "presets": ["es2015", "env", "react"],
+  "presets": ["react"],
   "plugins": [
-    "transform-runtime",
+    ["syntax-dynamic-import"],
     ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }]
   ]
 }

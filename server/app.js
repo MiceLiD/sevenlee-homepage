@@ -1,6 +1,7 @@
 const path = require('path')
 const fs = require('fs')
 const views = require('koa-views')
+// const static =  require('koa-static')
 const Logger = require('mini-logger')
 const config = require('../config/index')
 const isDev = process.env.NODE_ENV === 'development'
@@ -23,8 +24,13 @@ app.context.logger = Logger({
 /* 模板引擎 */
 app.use(views(path.join(__dirname, './views'), {
   map: { hbs: 'handlebars' },
-  extension: 'hbs'
+  extension: 'hbs',
+  options: {
+    helpers: require('../extensions/hbs.ext')
+  }
 }))
+
+// app.use(static(path.join(__dirname + `../static/${config.moduleName}/`)))
 
 /* router */
 const router = require('koa-router')({

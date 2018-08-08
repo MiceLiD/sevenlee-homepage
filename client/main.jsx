@@ -8,6 +8,6 @@ import 'antd/dist/antd.css'
 import './assets/style/main.less'
 import './assets/img/favicon.ico'
 
-import App from './App.js'
+import App from './App.jsx'
 
 render(<App />, document.getElementById('app'))

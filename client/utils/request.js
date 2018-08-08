@@ -1,4 +1,4 @@
-const config = require('../../config/index')
+import config from '../../config/index'
 export default async (path, payload) => {
   return await fetch(`${window.location.origin}${config.appPrefix}/api${path}`, {
     method: 'POST',

@@ -7,13 +7,31 @@ import {
 import { Layout, Icon, Menu } from 'antd'
 
 const { Content }  = Layout
-
-import MarkdownEditor from './page/MarkdownEditor.jsx'
-import ProcessEditor from './page/ProcessEditor.jsx'
-import Other from './page/Other.jsx'
-import Main from './page/Main.jsx'
-
+import Loadable from 'react-loadable'
 import './assets/style/app.less'
+
+function Loading() {
+  return <div>loading</div>
+}
+
+const MarkdownEditorAsync = Loadable({
+  loader: () => import(`./page/MarkdownEditor`),
+  loading: Loading
+})
+const ProcessEditorAsync = Loadable({
+  loader: () => import(`./page/ProcessEditor`),
+  loading: Loading
+})
+const OtherAsync = Loadable({
+  loader: () => import(`./page/Other`),
+  loading: Loading
+})
+const MainAsync = Loadable({
+  loader: () => import(`./page/Main`),
+  loading: Loading
+})
+
+
 
 class App extends Component {
   constructor() {
@@ -65,10 +83,10 @@ class App extends Component {
             </div>
           </div>
           <Content className="content">
-            <Route path="/index" render={props => (<Main />)}></Route>
-            <Route path="/markdown-editor" render={props => (<MarkdownEditor />)}></Route>
-            <Route path="/process-editor" render={props => (<ProcessEditor />)}></Route>
-            <Route path="/other" render={props => (<Other />)}></Route>
+            <Route path="/index" component={ MainAsync }></Route>
+            <Route path="/markdown-editor" component={ MarkdownEditorAsync }></Route>
+            <Route path="/process-editor" component={ ProcessEditorAsync }></Route>
+            <Route path="/other" component={ OtherAsync }></Route>
           </Content>
         </div>
       </Router>
