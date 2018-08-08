@@ -4,4 +4,4 @@ static/
 shared/logs/*.log
 shared/sockets/*.sock
 shared/nodeStd/*.log
-shared/pids/node.pid
+shared/pids/*
