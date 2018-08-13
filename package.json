@@ -35,6 +35,7 @@
   "devDependencies": {
     "babel-loader": "^7.1.4",
     "babel-plugin-import": "^1.8.0",
+    "babel-plugin-syntax-object-rest-spread": "^6.13.0",
     "babel-preset-react": "^6.24.1",
     "babel-runtime": "^6.26.0",
     "clean-webpack-plugin": "^0.1.19",

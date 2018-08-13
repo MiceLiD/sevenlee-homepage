@@ -1,24 +1,24 @@
 import React, { Component } from 'react'
+import Texty from 'rc-texty'
+import 'rc-texty/assets/index.css';
 
 class Main extends Component {
   constructor() {
     super()
     this.state = {
-      username: 'loading'
+      option: {
+        type: 'right',
+        interval: 300
+      } 
     }
-  }
-  componentDidMount() {
-    let o = [1,2]
-    o = [...o, 3]
-    f_Request('/getusername')
-      .then(data => {
-        this.setState({username: data.username})
-      })
   }
   render() {
     return (
-      <div style={{padding: '20px'}}>
-        这是主页 {this.state.username}
+      <div style={{padding: '100px', fontSize: '20px'}}>
+        <Texty
+          {...this.state.option}>
+          这里是主页呀！
+        </Texty>
       </div>
     )
   }

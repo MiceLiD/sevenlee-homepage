@@ -4,15 +4,14 @@ import {
   Route,
   NavLink
 } from 'react-router-dom'
+
 import { Layout, Icon, Menu } from 'antd'
 
 const { Content }  = Layout
 import Loadable from 'react-loadable'
 import './assets/style/app.less'
 
-function Loading() {
-  return <div>loading</div>
-}
+import Loading from './components/Loading'
 
 const MarkdownEditorAsync = Loadable({
   loader: () => import(`./page/MarkdownEditor`),
