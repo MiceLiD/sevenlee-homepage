@@ -27,6 +27,7 @@
     "koa-views": "^6.1.4",
     "mini-logger": "^1.1.3",
     "node-fetch": "^2.1.2",
+    "rc-texty": "^0.1.1",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-loadable": "^5.4.0",
