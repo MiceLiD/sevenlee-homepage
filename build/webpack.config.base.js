@@ -1,11 +1,12 @@
 const path = require('path')
 module.exports = {
   entry: {
-    main: path.join(__dirname, '../client/main.jsx')
+    main: path.join(__dirname, '../client/sevenlee/main.jsx'),
+    getIn: path.join(__dirname, '../client/getIn/main.jsx')
   },
   optimization: {
     splitChunks: {
-      chunks: 'all'
+      chunks: 'initial'
     }
   },
   resolve: {

@@ -1,8 +1,9 @@
 const path = require('path')
 const fs = require('fs')
 const views = require('koa-views')
-// const static =  require('koa-static')
+const bodyPaser =  require('koa-bodyParser')
 const Logger = require('mini-logger')
+const session = require('koa-session')
 const config = require('../config/index')
 const isDev = process.env.NODE_ENV === 'development'
 
@@ -30,7 +31,21 @@ app.use(views(path.join(__dirname, './views'), {
   }
 }))
 
-// app.use(static(path.join(__dirname + `../static/${config.moduleName}/`)))
+app.use(bodyPaser())
+app.keys = [process.env.SESSION_SECRET || 'sevenlee']
+app.use(
+  session(
+    {
+      key: 'sevenlee:sess',
+      maxAge: 86400000,
+      // maxAge: 3000,
+      overwrite: true,
+      httpOnly: true,
+      signed: true
+    },
+    app
+  )
+)
 
 /* router */
 const router = require('koa-router')({

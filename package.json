@@ -7,7 +7,7 @@
     "analyze": "webpack --config build/webpack.config.analyze.js",
     "webpack-dev": "webpack-dev-server --config build/webpack.config.dev.js --progress --inline",
     "build": "webpack --config build/webpack.config.prod.js",
-    "node-dev": "cross-env NODE_ENV=development supervisor -w ./server,./extensions,./config -e js,hbs node ./server/app.js",
+    "node-dev": "cross-env NODE_ENV=development supervisor -w ./server,./extensions ./db, ./config -e js,hbs node ./server/app.js",
     "start": "cross-env NODE_ENV=production UV_THREADPOOL_SIZE=10 node ./server/app.js",
     "dev": "npm run webpack-dev & npm run node-dev",
     "prod": "npm run build && npm run start"

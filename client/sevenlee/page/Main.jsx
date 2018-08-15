@@ -19,6 +19,7 @@ class Main extends Component {
           {...this.state.option}>
           这里是主页呀！
         </Texty>
+        
       </div>
     )
   }
