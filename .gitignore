@@ -5,3 +5,4 @@ shared/logs/*.log
 shared/sockets/*.sock
 shared/nodeStd/*.log
 shared/pids/*.pid
+.env
