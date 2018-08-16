@@ -22,7 +22,7 @@ class GetIn extends Component {
         console.log(data)
         this.props.form.validateFields(['name'])
         if (data) {
-          window.location.replace('/')
+          window.location.reload()
         }
       })
     });

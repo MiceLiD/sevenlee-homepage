@@ -8,7 +8,7 @@ class ProcessEdit extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      showHelp: false
+      showHelp: true
     }
   }
 
@@ -43,7 +43,7 @@ class ProcessEdit extends Component {
 
   render() {
     return (
-      <div id="container">
+      <div id="container" style={{minHeight: '500px'}}>
         <div id="toolbox" style={this.props.items ? {} : {display: 'none'}}>
           <Tooltip title={this.state.showHelp ? "关闭帮助面板" : "打开帮助面板"}>
             <Icon type="question-circle-o" id="help" className={this.state.showHelp ? 'active' : ''} onClick={this.handleOnCLickHelp.bind(this)} />
@@ -54,14 +54,15 @@ class ProcessEdit extends Component {
           <Tooltip title="标记完成">
             <Icon type="check-circle-o" id="download-input"/>
           </Tooltip>
-          <Tooltip title="删除全图">
-            <Icon type="delete" id="delete-graph-all"/>
-          </Tooltip>
           <Tooltip title="删除节点">
-            <Icon type="close" id="delete-graph-one"/>
+            <Icon type="delete" id="delete-graph-one"/>
+          </Tooltip>
+          <Tooltip title="清空画布">
+            <Icon type="close" id="delete-graph-all"/>
           </Tooltip>
         </div>
         <div id="helpbox" className={this.state.showHelp ? 'active' : ''}>
+          <li style={{color: 'red'}}><strong>这是一个流程图编辑器！</strong></li>
           <li><strong>创建节点：</strong>Shift + Click</li>
           <li><strong>创建连接线：</strong>光标移到任务节点，Shift + Click + 拖动</li>
           <li><strong>删除（节点或连接线）：</strong>选中节点或连接线，紫色形态即为选中，点击删除图标删除</li>

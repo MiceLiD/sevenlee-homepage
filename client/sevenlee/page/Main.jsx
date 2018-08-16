@@ -7,7 +7,7 @@ class Main extends Component {
     super()
     this.state = {
       option: {
-        type: 'right',
+        type: 'scaleBig',
         interval: 300
       } 
     }

@@ -54,6 +54,13 @@ const router = require('koa-router')({
 const appRouter = require('./router/index')
 appRouter(router)
 app.use(router.routes()).use(router.allowedMethods())
+/* 404 */
+app.use(async (ctx, next) => {
+  if (ctx.status === 404) {
+    await ctx.render('404')
+  }
+  await next;
+})
 
 /* listen */
 if (isDev) {

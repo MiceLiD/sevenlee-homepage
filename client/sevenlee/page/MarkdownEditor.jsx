@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import BraftEditor from 'braft-editor'
 import 'braft-editor/dist/braft.css'
-import { Button } from 'antd'
 
 class Editor extends Component {
   constructor() {
@@ -21,19 +20,17 @@ class Editor extends Component {
 
   render() {
     const editorProps = {
-      height: 700,
+      height: 500,
       contentFormat: 'html',
-      initialContent: '<p><span style="font-family:Impact, serif">sdsdsd</span></p>',
+      initialContent: '<p><span style="font-family:Impact, serif">这是个markdown编辑器</span></p>',
       onChange: this.handleOnChange.bind(this),
       onSave: this.handleOnSave.bind(this)
     }
-    return (
-      <div>
-        <BraftEditor {...editorProps}></BraftEditor>
-        <div className="save-button" style={{position: 'fixed', right: '20px', bottom: '20px', zIndex: 999}}>
-          <Button onClick={this.handleOnSave.bind(this)} type="primary">保存</Button>
-        </div>
-      </div>
+    const { username } = this.props.user
+    return username !== 'lidongsevenlee' ? 
+      (<div style={{paddingTop: '20px', textAlign: 'center'}}>这是一个markdown编辑器，但是你没有权限哟。</div>) 
+      :  
+      (<BraftEditor {...editorProps} />
     )
   }
 }

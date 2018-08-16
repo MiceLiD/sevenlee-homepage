@@ -1,49 +1,108 @@
-.wrapper {
+.app {
   width: 100%;
   height: 100%;
-  display: flex;
-  display: -webkit-flex;
-  .sider {
-    position: relative;
-    background: #001529;
-    width: 80px;
-    height: 100%;
-    text-align: center;
-    color: #ffffff;
-    padding-top: 25px;
-    box-sizing: border-box;
-    transition: width .5s ease;
-    &.expend {
-      width: 200px;
+  .header {
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 2px;
+    background-color: #ffffff;
+    color: #909090;
+    border-bottom: 1px solid #f1f1f1;
+    height: 60px;
+    z-index: 999;
+    .container {
+      max-width: 960px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 100%;
       img {
-        transform: rotateZ(-90deg);
-      }
-      .logo {
-        top: 95%;
-        transform: translateX(-50%) rotateZ(0);
+        width: 38px;
+        height: 38px;
+        border-radius: 4px;
       }
     }
-    img {
-      display: inline-block;
-      width: 30px;
-      height: 30px;
-      cursor: pointer;
-      transition: transform .5s ease;
-    }
-    .logo {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%) rotateZ(-90deg);
-      transition: all .5s ease;
+    .navbar {
+      flex: 1;
+      margin-left: 60px;
+      ul {
+        li {
+          float: left;
+          margin-right: 20px;
+          a {
+            color: rgba(0, 0, 0, 0.603);
+            &.active {
+              color: rgb(117, 44, 212);
+            }
+          }
+        }
+      }
     }
   }
-  .content {
-    flex: 1;
-    background-color: #faefd9;
-    .register-wrapper {
-      width: 60%;
-      margin: 100px auto;
+  .wrapper {
+    max-width: 960px;
+    margin: 80px auto;
+    height: 100%;
+    overflow: hidden;
+    box-sizing: content-box;
+    .content-wrapper {
+      display: flex;
+      align-items: top;
+      justify-content: space-between;
+      .content {
+        box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);
+        flex: 1;
+        min-height: 500px;
+        overflow-y: scroll;
+        margin-right: 20px;
+        background-color: #fff;
+      }
+      .right-sider {
+        width: 200px;
+        height: 100%;
+        .block {
+          box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);
+          width: 100%;
+          height: 100px;
+          text-align: center;
+          line-height: 100px;
+          margin-bottom: 20px;
+          background-color: #ffffff;
+        }
+        .more-block {
+          background-color: inherit;
+          line-height: 1.5;
+          text-align: left;
+          box-shadow: none;
+        }
+      }
     }
+  }
+}
+
+// 额外的
+.ant-menu.ant-menu-dark .ant-menu-item-selected, .ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected {
+  background-color: #faefd94f;
+}
+.server-loading {
+  position: fixed;
+  width: 0;
+  height: 2px;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  background-color: rgb(0, 132, 255);
+  box-shadow: 0 13px 13px #fff;
+  border-radius: 1px;
+  animation: 500ms cubic-bezier(0, 1, 0.3, 1) leftToright forwards;
+}
+@keyframes leftToright {
+  from {
+    width: 0;
+  }
+  to {
+    width: 95%;
   }
 }

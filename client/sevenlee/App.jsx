@@ -1,17 +1,17 @@
 import React, { Component } from 'react'
 import {
   BrowserRouter as Router,
-  Route,
-  NavLink
+  Route
 } from 'react-router-dom'
 
-import { Layout, Icon, Menu } from 'antd'
+import { Layout } from 'antd'
 
 const { Content }  = Layout
 import Loadable from 'react-loadable'
-import './assets/style/app.less'
 
-import Loading from './components/Loading'
+const Loading = () => (<div className="server-loading"></div>)
+import Header from './components/Header'
+import SiderBlock from './components/SiderBlock'
 
 const MarkdownEditorAsync = Loadable({
   loader: () => import(`./page/MarkdownEditor`),
@@ -35,60 +35,27 @@ const MainAsync = Loadable({
 class App extends Component {
   constructor() {
     super()
-    this.state = {
-      expend: false,
-      selectedKey: window.location.pathname
-    }
-  }
-
-  handleMenuClick() {
-    this.setState({expend: !this.state.expend})
+    this.state = {}
   }
   render() {
-    const expend = this.state.expend
-    const selectedKey = this.state.selectedKey
+    const { user } = this.props
     return (
-      <Router>
-        <div className="wrapper">
-          <div className={expend ? 'expend sider' : 'sider'}>
-            <img onClick={this.handleMenuClick.bind(this)} src={require('./assets/img/menu.png')} alt=""/>
-            <Menu
-              style={{marginTop: '30px', display: expend ? 'block' : 'none', textAlign: 'left'}}
-              defaultSelectedKeys={[selectedKey]}
-              mode="inline"
-              theme="dark"
-              inlineCollapsed={!expend}>
-              <Menu.Item key="/markdown-editor">
-                <NavLink to="/markdown-editor">
-                  <Icon type="smile-o" />
-                  <span>markdown editor</span>
-                </NavLink>
-              </Menu.Item>
-              <Menu.Item key="/process-editor">
-                <NavLink to="/process-editor">
-                  <Icon type="smile-o" />
-                  <span>process editor</span>
-                </NavLink>
-              </Menu.Item>
-              <Menu.Item key="/other">
-                <NavLink to="/other">
-                  <Icon type="smile-o" />
-                  <span>other</span>
-                </NavLink>
-              </Menu.Item>
-            </Menu>
-            <div className="logo">
-              <NavLink to="/index">SEVENLEE</NavLink>
+      <div className="app">
+        <Router>
+          <div className="wrapper">
+            <Header user={ user } />
+            <div className="content-wrapper">
+              <Content className="content">
+                <Route path="/main" component={ MainAsync }></Route>
+                <Route path="/markdown-editor" render={props => <MarkdownEditorAsync {...props} user={ user } />  }></Route>
+                <Route path="/process-editor" component={ ProcessEditorAsync }></Route>
+                <Route path="/other" component={ OtherAsync }></Route>
+              </Content>
+              <SiderBlock />
             </div>
           </div>
-          <Content className="content">
-            <Route path="/index" component={ MainAsync }></Route>
-            <Route path="/markdown-editor" component={ MarkdownEditorAsync }></Route>
-            <Route path="/process-editor" component={ ProcessEditorAsync }></Route>
-            <Route path="/other" component={ OtherAsync }></Route>
-          </Content>
-        </div>
-      </Router>
+        </Router>
+      </div>
     )
   }
 }
