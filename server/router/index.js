@@ -34,5 +34,12 @@ module.exports = (app) => {
 
   /* api */
   app.post('/api/getIn', getIn)
+  app.post('/api/getout', ctx => {
+    ctx.session = null
+    ctx.body = JSON.stringify({
+      code: 0,
+      data: 'get out successful'
+    })
+  })
 }
 

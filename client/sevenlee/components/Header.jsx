@@ -11,6 +11,14 @@ export default class Header extends Component {
     }
     return false
   }
+  handleGetout() {
+    f_Request('/getout')
+      .then(data => {
+        if (data) {
+          window.location.reload()
+        }
+      })
+  }
   render() {
     const { username, code, created } = this.props.user
     return (
@@ -41,7 +49,7 @@ export default class Header extends Component {
               { username }
             </Tooltip>&nbsp;&nbsp;
             <Tooltip placement="bottom" title={`get out of here`}>
-              <Icon style={{color: 'red', cursor: 'pointer'}} type="logout" onClick={() => {window.location.replace('/getout')}}/>
+              <Icon style={{color: 'red', cursor: 'pointer'}} type="logout" onClick={this.handleGetout.bind(this)}/>
             </Tooltip>
           </div>
         </div>
