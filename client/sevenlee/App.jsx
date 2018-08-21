@@ -21,8 +21,8 @@ const ProcessEditorAsync = Loadable({
   loader: () => import(`./page/ProcessEditor`),
   loading: Loading
 })
-const OtherAsync = Loadable({
-  loader: () => import(`./page/Other`),
+const SecretAsync = Loadable({
+  loader: () => import(`./page/Secret`),
   loading: Loading
 })
 const MainAsync = Loadable({
@@ -46,10 +46,10 @@ class App extends Component {
             <Header user={ user } />
             <div className="content-wrapper">
               <Content className="content">
-                <Route path="/main" component={ MainAsync }></Route>
+                <Route path="/main" render={props => <MainAsync {...props} user={ user } />}></Route>
                 <Route path="/markdown-editor" render={props => <MarkdownEditorAsync {...props} user={ user } />  }></Route>
                 <Route path="/process-editor" component={ ProcessEditorAsync }></Route>
-                <Route path="/other" component={ OtherAsync }></Route>
+                <Route path="/secret" component={ SecretAsync }></Route>
               </Content>
               <SiderBlock />
             </div>

@@ -6,7 +6,7 @@ module.exports = async (ctx, next) => {
   await User.sync()
 
   await User.findOrCreate({
-    where: { username },
+    where: { username, code },
     defaults: { code }
   }).spread((result, created) => {
     ctx.session = { username, code, created }

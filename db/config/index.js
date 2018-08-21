@@ -3,8 +3,8 @@ const ENV = process.env
 
 module.exports = {
   development: {
-    username: 'localsevenlee',
-    password: 'localsevenlee',
+    username: 'www',
+    password: 'www',
     database: 'sevenlee',
     options: {
       host: '127.0.0.1',

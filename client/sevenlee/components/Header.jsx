@@ -12,7 +12,7 @@ export default class Header extends Component {
     return false
   }
   handleGetout() {
-    f_Request('/getout')
+    f_Request('/get-out')
       .then(data => {
         if (data) {
           window.location.reload()
@@ -39,7 +39,7 @@ export default class Header extends Component {
                 <NavLink style={{ textDecoration: 'none' }} isActive={this.handleActiveRouter.bind(this, '/markdown-editor')} to="/markdown-editor">Markdown</NavLink>
               </li>
               <li>
-                <NavLink style={{ textDecoration: 'none' }} isActive={this.handleActiveRouter.bind(this, '/other')} to="/other">Other</NavLink>
+                <NavLink style={{ textDecoration: 'none' }} isActive={this.handleActiveRouter.bind(this, '/secret')} to="/secret">Secret</NavLink>
               </li>
             </ul>
           </div>

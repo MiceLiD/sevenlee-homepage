@@ -1,5 +1,3 @@
-const getIn = require('../controller/getIn')
-
 const render = async ctx => {
   if (ctx.session && !ctx.session.username) {
     ctx.redirect('/login')
@@ -17,7 +15,7 @@ module.exports = (app) => {
   app.get('/main', render)
   app.get('/markdown-editor', render)
   app.get('/process-editor', render)
-  app.get('/other', render)
+  app.get('/secret', render)
 
   /* 登录登出路由 */
   app.get('/login', async ctx => {
@@ -33,13 +31,20 @@ module.exports = (app) => {
   })
 
   /* api */
-  app.post('/api/getIn', getIn)
-  app.post('/api/getout', ctx => {
+  app.post('/api/get-in', require('../controller/getIn'))
+  app.post('/api/get-out', ctx => {
     ctx.session = null
     ctx.body = JSON.stringify({
       code: 0,
       data: 'get out successful'
     })
   })
+
+  app.post('/api/set-article', require('../controller/setArticle'))
+  app.post('/api/get-article', require('../controller/getArticle'))
+  app.post('/api/update-article', require('../controller/updateArticle'))
+   app.post('/api/del-article', require('../controller/delArticle'))
+
+  app.post('/api/upload', require('../controller/upload'))
 }
 

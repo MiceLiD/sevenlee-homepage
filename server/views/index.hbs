@@ -7,280 +7,34 @@
       <script src="https://cdn.bootcss.com/d3/3.5.5/d3.min.js"></script>
       <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
       {{{ xIco }}}
-      <style>
-        .loader {
-          position: absolute;
+      <title>{{ title }}</title>
+       <style>
+        .server-loading {
+          position: fixed;
+          width: 30px;
+          height: 30px;
           left: 50%;
           top: 50%;
-          width: 48.2842712474619px;
-          height: 48.2842712474619px;
-          margin-left: -24.14213562373095px;
-          margin-top: -24.14213562373095px;
-          border-radius: 100%;
-          -webkit-animation-name: loader;
-                  animation-name: loader;
-          -webkit-animation-iteration-count: infinite;
-                  animation-iteration-count: infinite;
-          -webkit-animation-timing-function: linear;
-                  animation-timing-function: linear;
-          -webkit-animation-duration: 4s;
-                  animation-duration: 4s;
+          transform: translate(50%, 50%);
+          animation: 1s linear leftToright infinite reverse;
         }
-        .loader .side {
-          display: block;
-          width: 6px;
-          height: 20px;
-          background-color: #046380;
-          margin: 2px;
-          position: absolute;
-          border-radius: 50%;
-          -webkit-animation-duration: 1.5s;
-                  animation-duration: 1.5s;
-          -webkit-animation-iteration-count: infinite;
-                  animation-iteration-count: infinite;
-          -webkit-animation-timing-function: ease;
-                  animation-timing-function: ease;
-        }
-        .loader .side:nth-child(1),
-        .loader .side:nth-child(5) {
-          -webkit-transform: rotate(0deg);
-                  transform: rotate(0deg);
-          -webkit-animation-name: rotate0;
-                  animation-name: rotate0;
-        }
-        .loader .side:nth-child(3),
-        .loader .side:nth-child(7) {
-          -webkit-transform: rotate(90deg);
-                  transform: rotate(90deg);
-          -webkit-animation-name: rotate90;
-                  animation-name: rotate90;
-        }
-        .loader .side:nth-child(2),
-        .loader .side:nth-child(6) {
-          -webkit-transform: rotate(45deg);
-                  transform: rotate(45deg);
-          -webkit-animation-name: rotate45;
-                  animation-name: rotate45;
-        }
-        .loader .side:nth-child(4),
-        .loader .side:nth-child(8) {
-          -webkit-transform: rotate(135deg);
-                  transform: rotate(135deg);
-          -webkit-animation-name: rotate135;
-                  animation-name: rotate135;
-        }
-        .loader .side:nth-child(1) {
-          top: 24.14213562373095px;
-          left: 48.2842712474619px;
-          margin-left: -3px;
-          margin-top: -10px;
-          -webkit-animation-delay: 0;
-                  animation-delay: 0;
-        }
-        .loader .side:nth-child(2) {
-          top: 41.21320343109277px;
-          left: 41.21320343109277px;
-          margin-left: -3px;
-          margin-top: -10px;
-          -webkit-animation-delay: 0;
-                  animation-delay: 0;
-        }
-        .loader .side:nth-child(3) {
-          top: 48.2842712474619px;
-          left: 24.14213562373095px;
-          margin-left: -3px;
-          margin-top: -10px;
-          -webkit-animation-delay: 0;
-                  animation-delay: 0;
-        }
-        .loader .side:nth-child(4) {
-          top: 41.21320343109277px;
-          left: 7.07106781636913px;
-          margin-left: -3px;
-          margin-top: -10px;
-          -webkit-animation-delay: 0;
-                  animation-delay: 0;
-        }
-        .loader .side:nth-child(5) {
-          top: 24.14213562373095px;
-          left: 0px;
-          margin-left: -3px;
-          margin-top: -10px;
-          -webkit-animation-delay: 0;
-                  animation-delay: 0;
-        }
-        .loader .side:nth-child(6) {
-          top: 7.07106781636913px;
-          left: 7.07106781636913px;
-          margin-left: -3px;
-          margin-top: -10px;
-          -webkit-animation-delay: 0;
-                  animation-delay: 0;
-        }
-        .loader .side:nth-child(7) {
-          top: 0px;
-          left: 24.14213562373095px;
-          margin-left: -3px;
-          margin-top: -10px;
-          -webkit-animation-delay: 0;
-                  animation-delay: 0;
-        }
-        .loader .side:nth-child(8) {
-          top: 7.07106781636913px;
-          left: 41.21320343109277px;
-          margin-left: -3px;
-          margin-top: -10px;
-          -webkit-animation-delay: 0;
-                  animation-delay: 0;
-        }
-        @-webkit-keyframes rotate0 {
+        @keyframes leftToright {
           0% {
-            -webkit-transform: rotate(0deg);
-                    transform: rotate(0deg);
-          }
-          60% {
-            -webkit-transform: rotate(180deg);
-                    transform: rotate(180deg);
+            opacity: 1;
+            transform: rotateZ(0deg);
           }
           100% {
-            -webkit-transform: rotate(180deg);
-                    transform: rotate(180deg);
+            opacity: 1;
+            transform: rotateZ(360deg);
           }
         }
-        @keyframes rotate0 {
-          0% {
-            -webkit-transform: rotate(0deg);
-                    transform: rotate(0deg);
-          }
-          60% {
-            -webkit-transform: rotate(180deg);
-                    transform: rotate(180deg);
-          }
-          100% {
-            -webkit-transform: rotate(180deg);
-                    transform: rotate(180deg);
-          }
-        }
-        @-webkit-keyframes rotate90 {
-          0% {
-            -webkit-transform: rotate(90deg);
-                    transform: rotate(90deg);
-          }
-          60% {
-            -webkit-transform: rotate(270deg);
-                    transform: rotate(270deg);
-          }
-          100% {
-            -webkit-transform: rotate(270deg);
-                    transform: rotate(270deg);
-          }
-        }
-        @keyframes rotate90 {
-          0% {
-            -webkit-transform: rotate(90deg);
-                    transform: rotate(90deg);
-          }
-          60% {
-            -webkit-transform: rotate(270deg);
-                    transform: rotate(270deg);
-          }
-          100% {
-            -webkit-transform: rotate(270deg);
-                    transform: rotate(270deg);
-          }
-        }
-        @-webkit-keyframes rotate45 {
-          0% {
-            -webkit-transform: rotate(45deg);
-                    transform: rotate(45deg);
-          }
-          60% {
-            -webkit-transform: rotate(225deg);
-                    transform: rotate(225deg);
-          }
-          100% {
-            -webkit-transform: rotate(225deg);
-                    transform: rotate(225deg);
-          }
-        }
-        @keyframes rotate45 {
-          0% {
-            -webkit-transform: rotate(45deg);
-                    transform: rotate(45deg);
-          }
-          60% {
-            -webkit-transform: rotate(225deg);
-                    transform: rotate(225deg);
-          }
-          100% {
-            -webkit-transform: rotate(225deg);
-                    transform: rotate(225deg);
-          }
-        }
-        @-webkit-keyframes rotate135 {
-          0% {
-            -webkit-transform: rotate(135deg);
-                    transform: rotate(135deg);
-          }
-          60% {
-            -webkit-transform: rotate(315deg);
-                    transform: rotate(315deg);
-          }
-          100% {
-            -webkit-transform: rotate(315deg);
-                    transform: rotate(315deg);
-          }
-        }
-        @keyframes rotate135 {
-          0% {
-            -webkit-transform: rotate(135deg);
-                    transform: rotate(135deg);
-          }
-          60% {
-            -webkit-transform: rotate(315deg);
-                    transform: rotate(315deg);
-          }
-          100% {
-            -webkit-transform: rotate(315deg);
-                    transform: rotate(315deg);
-          }
-        }
-        @-webkit-keyframes loader {
-          0% {
-            -webkit-transform: rotate(0deg);
-                    transform: rotate(0deg);
-          }
-          100% {
-            -webkit-transform: rotate(360deg);
-                    transform: rotate(360deg);
-          }
-        }
-        @keyframes loader {
-          0% {
-            -webkit-transform: rotate(0deg);
-                    transform: rotate(0deg);
-          }
-          100% {
-            -webkit-transform: rotate(360deg);
-                    transform: rotate(360deg);
-          }
-        }
-
       </style>
-      <title>{{ title }}</title>
     </head>
     <body>
       <div id="app" data-user={{ user }}>
-        <div class="loader">
-          <div class="side"></div>
-          <div class="side"></div>
-          <div class="side"></div>
-          <div class="side"></div>
-          <div class="side"></div>
-          <div class="side"></div>
-          <div class="side"></div>
-          <div class="side"></div>
-        </div>
+        <svg t="1534147313712" class="server-loading" style="" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1396" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style type="text/css"></style></defs>
+          <path d="M960 576 832 576C796.672 576 768 547.328 768 512 768 476.672 796.672 448 832 448L960 448C995.328 448 1024 476.672 1024 512 1024 547.328 995.328 576 960 576ZM783.552 331.008C758.528 355.968 718.016 355.968 692.992 331.008 668.032 305.984 668.032 265.472 692.992 240.448L783.552 149.952C808.512 124.992 849.024 124.992 874.048 149.952 899.008 174.976 899.008 215.488 874.048 240.448L783.552 331.008ZM512 1024C476.672 1024 448 995.392 448 960L448 832C448 796.672 476.672 768 512 768 547.328 768 576 796.672 576 832L576 960C576 995.392 547.328 1024 512 1024ZM512 256C476.672 256 448 227.392 448 192L448 64C448 28.608 476.672 0 512 0 547.328 0 576 28.608 576 64L576 192C576 227.392 547.328 256 512 256ZM240.448 874.048C215.488 899.008 174.976 899.008 149.952 874.048 124.992 849.088 124.992 808.576 149.952 783.552L240.448 693.056C265.472 668.032 305.984 668.032 331.008 693.056 355.968 718.016 355.968 758.528 331.008 783.552L240.448 874.048ZM240.448 331.008 149.952 240.448C124.992 215.488 124.992 174.976 149.952 149.952 174.976 124.992 215.488 124.992 240.448 149.952L331.008 240.448C355.968 265.472 355.968 305.984 331.008 331.008 305.984 355.968 265.472 355.968 240.448 331.008ZM256 512C256 547.328 227.328 576 192 576L64 576C28.672 576 0 547.328 0 512 0 476.672 28.672 448 64 448L192 448C227.328 448 256 476.672 256 512ZM783.552 693.056 874.048 783.552C899.008 808.576 899.008 849.088 874.048 874.048 849.024 899.008 808.512 899.008 783.552 874.048L692.992 783.552C668.032 758.528 668.032 718.016 692.992 693.056 718.016 668.032 758.528 668.032 783.552 693.056Z" fill="#d4237a" p-id="1397"></path>
+        </svg>
       </div>
       {{{ xScript 'main' }}}
       {{{ xScript 'vendors~getIn~main' }}}

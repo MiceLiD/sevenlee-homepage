@@ -3,6 +3,7 @@ const fs = require('fs')
 const views = require('koa-views')
 const bodyPaser =  require('koa-bodyparser')
 const Logger = require('mini-logger')
+const static = require('koa-static')
 const session = require('koa-session')
 const config = require('../config/index')
 const isDev = process.env.NODE_ENV === 'development'
@@ -31,7 +32,15 @@ app.use(views(path.join(__dirname, './views'), {
   }
 }))
 
-app.use(bodyPaser())
+if (isDev) {
+  app.use(static(path.join(__dirname, '../')))
+}
+
+app.use(bodyPaser({
+  formLimit: "5mb",
+  jsonLimit: "5mb",
+  textLimit: "5mb"
+}))
 app.keys = [process.env.SESSION_SECRET || 'sevenlee']
 app.use(
   session(

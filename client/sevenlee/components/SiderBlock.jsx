@@ -7,10 +7,15 @@ export default class SiderBlock extends Component {
   constructor() {
     super()
     this.state = {
-      option: {
+      option1: {
         type: 'flash',
         interval: 1000
-      } 
+      },
+      option2: {
+        type: 'bounce',
+        interval: 1000,
+        delay: 1000
+      }  
     }
   }
   render() {
@@ -18,14 +23,14 @@ export default class SiderBlock extends Component {
       <div className="right-sider">
         <div className="block">
           <Texty
-            {...this.state.option}>
+            {...this.state.option1}>
             advertising
           </Texty>
           
         </div>
         <div className="block">
           <Texty
-            {...this.state.option}>
+            {...this.state.option2}>
             advertising
           </Texty>
         </div>

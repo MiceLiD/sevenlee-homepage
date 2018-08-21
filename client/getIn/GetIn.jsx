@@ -14,12 +14,11 @@ class GetIn extends Component {
       if (!values.username || !values.code) {
         return
       }
-      f_Request('/getIn', {
+      f_Request('/get-in', {
         username: values.username,
         code: values.code
       })
       .then(data => {
-        console.log(data)
         this.props.form.validateFields(['name'])
         if (data) {
           window.location.reload()

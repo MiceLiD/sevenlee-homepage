@@ -6,3 +6,4 @@ shared/sockets/*.sock
 shared/nodeStd/*.log
 shared/pids/*.pid
 .env
+public/upload-file/*

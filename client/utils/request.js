@@ -1,11 +1,11 @@
 import config from '../../config/index'
-export default async (path, payload) => {
+export default async (path, payload, isForm) => {
   return await fetch(`${window.location.origin}${config.appPrefix}/api${path}`, {
     method: 'POST',
     mode: 'cors',
-    body: JSON.stringify(typeof payload === 'object' ? payload : {}),
+    body: isForm ? payload : JSON.stringify(typeof payload === 'object' ? payload : {}),
     credentials: 'same-origin',
-    headers: { 'content-type': 'application/json' }
+    headers: isForm ? {} : { 'content-type': 'application/json' }
   })
   .then(res => res.json())
   .then(res => {
