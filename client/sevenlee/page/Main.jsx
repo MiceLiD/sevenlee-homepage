@@ -55,6 +55,15 @@ class Main extends Component {
   }
 
   handleOnDelete(id) {
+    const { username, code } = this.props.user
+    const canDelete = username === 'lidongsevenlee' && code === '930903'
+    if (!canDelete) {
+      notification.error({
+        message: '操作失败',
+        description: '你无权执行此操作！'
+      })
+      return
+    }
     f_Request('/del-article', { id })
       .then(data => {
         this.getArticleList(true)

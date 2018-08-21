@@ -28,7 +28,7 @@ class GetIn extends Component {
   }
 
   render() {
-    const { getFieldDecorator, getFieldValue } = this.props.form;
+    const { getFieldDecorator } = this.props.form;
     return (
       <div className="getIn-wrapper" style={{width: '60%', margin: '100px auto'}}>
         Tell me who you are:
