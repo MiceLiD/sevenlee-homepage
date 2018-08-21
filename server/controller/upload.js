@@ -26,7 +26,7 @@ module.exports = async (ctx, next) => {
     req.pipe(busboy)
   }).then((filename) => {
     ctx.body = JSON.stringify({
-      data: `/public/upload-file/${filename}`,
+      data: `/sevenlee-public/upload-file/${filename}`,
       code: 0
     })
   }).catch(err => {
