@@ -7,3 +7,4 @@ shared/nodeStd/*.log
 shared/pids/*.pid
 .env
 public/upload-file/*
+package-lock.json
