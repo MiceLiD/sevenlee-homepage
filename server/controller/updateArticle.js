@@ -2,7 +2,6 @@ const Article = require('../../db/modal/Article')
 
 module.exports = async (ctx, next) => {
   const { id, fields } = ctx.request.body
-console.log(fields)
   await Article.update(
     {
       ...fields
