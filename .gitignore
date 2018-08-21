@@ -7,4 +7,5 @@ shared/nodeStd/*.log
 shared/pids/*.pid
 .env
 public/upload-file/*
+!public/upload-file/.gitkeep
 package-lock.json
