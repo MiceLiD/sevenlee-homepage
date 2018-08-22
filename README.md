@@ -28,6 +28,9 @@ server {
     location /static/sevenlee {
         alias {your workspace}/sevenlee-homepage/static/sevenlee/;
     }
+    location /sevenlee-public {
+        alias {your workspace}/sevenlee-homepage/public/;
+    }
 }
 ```
 

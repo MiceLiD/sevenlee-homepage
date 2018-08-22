@@ -119,9 +119,6 @@ class Editor extends Component {
       }
     }
     const footerStyle = {
-      // position: 'absolute', 
-      // bottom: '10px', 
-      // right: '10px', 
       width: '80%',
       margin: '10px'
     }
