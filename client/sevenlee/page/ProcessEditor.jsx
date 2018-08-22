@@ -42,7 +42,9 @@ class ProcessEditor extends Component {
     }]
     let initData = {nodes, edges}
     return (
+      <div className="container process">
         <Editor items={this.state.allTasks} initData={initData} onDagCompleted={this.handleDagComplete.bind(this)}></Editor>
+      </div>
     )
   }
 }

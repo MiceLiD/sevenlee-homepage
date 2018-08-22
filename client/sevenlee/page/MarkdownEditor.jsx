@@ -127,7 +127,7 @@ class Editor extends Component {
       zIndex: 999
     }
     return (
-      <div style={{position: 'relative'}}>
+      <div className="container markdown" style={{position: 'relative'}}>
         <BraftEditor {...editorProps} />
         <Row style={footerStyle} gutter={10}>
           <Col span={18}>

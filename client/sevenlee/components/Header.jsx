@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import band from '../assets/img/band.jpeg'
-import { Tooltip, Icon } from 'antd'
+import { Tooltip, Icon, Menu, Dropdown } from 'antd'
 import { NavLink } from 'react-router-dom'
 
 export default class Header extends Component {
@@ -21,11 +21,44 @@ export default class Header extends Component {
   }
   render() {
     const { username, code, created } = this.props.user
+    const pathname = window.location.pathname
+    let menuName = 'Seven'
+    switch (pathname) {
+      case '/main':
+        menuName = 'Seven'
+        break;
+      case '/markdown-editor':
+        menuName = 'Markdown'
+        break;
+      case '/secret':
+        menuName = 'Secret'
+        break;
+      default:
+        break;
+    }
+    const menu = (
+      <Menu>
+        <Menu.Item>
+          <NavLink style={{ textDecoration: 'none' }} isActive={this.handleActiveRouter.bind(this, '/main')} to="/main">Seven</NavLink>
+        </Menu.Item>
+        <Menu.Item>
+          <NavLink style={{ textDecoration: 'none' }} isActive={this.handleActiveRouter.bind(this, '/markdown-editor')} to="/markdown-editor">Markdown</NavLink>
+        </Menu.Item>
+        <Menu.Item>
+          <NavLink style={{ textDecoration: 'none' }} isActive={this.handleActiveRouter.bind(this, '/secret')} to="/secret">Secret</NavLink>
+        </Menu.Item>
+      </Menu>
+    )
     return (
       <div className="header">
         <div className="container">
           <div className="band">
             <img src={band} alt="band"/>
+          </div>
+          <div className="navbar-drop-menu">
+            <Dropdown trigger={["click"]} overlay={menu}>
+              <span>{ menuName }</span>
+            </Dropdown>
           </div>
           <div className="navbar">
             <ul>
@@ -33,7 +66,7 @@ export default class Header extends Component {
                 <NavLink style={{ textDecoration: 'none' }} isActive={this.handleActiveRouter.bind(this, '/main')} to="/main">Seven</NavLink>
               </li>
               <li>
-                <NavLink style={{ textDecoration: 'none' }} isActive={this.handleActiveRouter.bind(this, '/process-editor')} to="/process-editor">Tapu</NavLink>
+                <NavLink disabled style={{ textDecoration: 'none' }} isActive={this.handleActiveRouter.bind(this, '/process-editor')} to="/process-editor">Tapu</NavLink>
               </li>
               <li>
                 <NavLink style={{ textDecoration: 'none' }} isActive={this.handleActiveRouter.bind(this, '/markdown-editor')} to="/markdown-editor">Markdown</NavLink>
@@ -42,6 +75,17 @@ export default class Header extends Component {
                 <NavLink style={{ textDecoration: 'none' }} isActive={this.handleActiveRouter.bind(this, '/secret')} to="/secret">Secret</NavLink>
               </li>
             </ul>
+          </div>
+          <div className="identify-drop-menu">
+            <Dropdown trigger={["click"]} overlay={
+              <Menu>
+                <Menu.Item>
+                  <Icon style={{color: 'red', cursor: 'pointer'}} type="logout" onClick={this.handleGetout.bind(this)}/>  
+                </Menu.Item>  
+              </Menu>
+            }>
+              <span>{ username }</span>
+            </Dropdown>
           </div>
           <div className="identify">
             <Icon type="smile-o" />&nbsp;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Icon, Popconfirm, Card, Avatar, notification } from 'antd'
+import { Icon, Popconfirm, Card, Avatar, notification, Spin } from 'antd'
 const { Meta } = Card
 import sevenlee_avatar from '../assets/img/band.jpeg'
 
@@ -8,7 +8,8 @@ class Main extends Component {
     super()
     this.state = {
       articleList: [],
-      isLoaded: false
+      isLoaded: false,
+      loading: false
     }
   }
 
@@ -18,14 +19,13 @@ class Main extends Component {
   componentDidCatch(error) {
     console.log(error)
   }
-
   getArticleList(needLoading) {
     if (needLoading) {
       this.setState({isLoaded: true})
     }
+    this.setState({loading: true})
     f_Request('/get-article')
       .then(data => {
-        this.setState({isLoaded: false})
         this.setState({
           articleList: data.rows.map(item => ({
             ...item,
@@ -33,11 +33,11 @@ class Main extends Component {
             createdAt: new Date(item.createdAt).toLocaleString(),
             updatedAt: new Date(item.updatedAt).toLocaleString()
           })),
-          isLoaded: false
+          isLoaded: false,
+          loading: false
         })
       })
   }
-
   handleOnGiveOrCancel(id, star, star_er, type, index) {
     if (type === 'cancel') {
       star_er = [...star_er.slice(0, index), ...star_er.slice(index + 1)]
@@ -53,7 +53,6 @@ class Main extends Component {
   handleOnEdit(id) {
     this.props.history.replace(`/markdown-editor?id=${id}`)
   }
-
   handleOnDelete(id) {
     const { username, code } = this.props.user
     const canDelete = username === 'lidongsevenlee' && code === '930903'
@@ -76,61 +75,63 @@ class Main extends Component {
   }
 
   render() {
-    const { articleList, isLoaded } = this.state
+    const { articleList, isLoaded, loading } = this.state
     const { username } = this.props.user
     return (
-      <div className="container" style={{padding: '10px', columnCount: !articleList.length ? 'unset' : 2}} >
-        {
-          !articleList.length ? <div style={{width: '100%', textAlign: 'center', paddingTop: '30px'}}>暂无发表内容</div> : 
-          articleList.map((item, idx) => (
-            <Card 
-              style={{breakInside: "avoid", marginTop: idx ? '10px' : 0, boxSizing: 'border-box'}}
-              key={item.id}
-              loading={isLoaded}
-              title={item.title || '默认标题'}
-              extra={
-                <div style={{fontSize: '12px'}}>
-                  <Icon type="clock-circle-o" />&nbsp;{item.createdAt}
-                </div>
-              }
-              // cover={<img alt="example" src="/sevenlee-public/upload-file/Mirror%20II.jpg" />}
-              actions={
-                item.star_er.includes(username) ? 
-                (
-                  [
-                    <span onClick={this.handleOnGiveOrCancel.bind(this, item.id, item.star - 1, item.star_er, 'cancel', item.star_er.indexOf(username))}>
-                      <Icon type="like" />&nbsp;{item.star}
-                    </span>, 
-                    <Icon onClick={this.handleOnEdit.bind(this, item.id)} type="edit" />,
-                    <Popconfirm title="确定删除么？" onConfirm={this.handleOnDelete.bind(this, item.id)}>
-                      <Icon type="delete" />
-                    </Popconfirm>
-                  ]
-                )
-                : (
-                  [
-                    <span onClick={this.handleOnGiveOrCancel.bind(this, item.id, item.star + 1, item.star_er, 'give')}>
-                      <Icon type="like-o" />&nbsp;{item.star}
-                    </span>, 
-                    <Icon onClick={this.handleOnEdit.bind(this, item.id)} type="edit" />,
-                    <Popconfirm title="确定删除么？" onConfirm={this.handleOnDelete.bind(this, item.id)}>
-                      <Icon type="delete" />
-                    </Popconfirm>
-                  ]
-                )
-              }
-            >
-              <Meta
-                avatar={<Avatar src={sevenlee_avatar} />}
-                title={<div dangerouslySetInnerHTML={{__html: item.content}}></div>}
-                description={
-                    item.star_er.map((er, idx) => (<span key={idx}>{`${er}, `}</span>))
-                  }
-              />
-            </Card>
-          ))
-        }
-      </div>
+      <Spin spinning={loading}>
+        <div className="container seven">
+          {
+            !articleList.length ? <div style={{width: '100%', textAlign: 'center', paddingTop: '30px'}}>暂无发表内容</div> : 
+            articleList.map((item, idx) => (
+              <Card 
+                style={{breakInside: "avoid", marginTop: idx ? '10px' : 0, boxSizing: 'border-box'}}
+                key={item.id}
+                loading={isLoaded}
+                title={item.title || '默认标题'}
+                extra={
+                  <div style={{fontSize: '12px'}}>
+                    <Icon type="clock-circle-o" />&nbsp;{item.createdAt}
+                  </div>
+                }
+                // cover={<img alt="example" src="/sevenlee-public/upload-file/Mirror%20II.jpg" />}
+                actions={
+                  item.star_er.includes(username) ? 
+                  (
+                    [
+                      <span onClick={this.handleOnGiveOrCancel.bind(this, item.id, item.star - 1, item.star_er, 'cancel', item.star_er.indexOf(username))}>
+                        <Icon type="like" />&nbsp;{item.star}
+                      </span>, 
+                      <Icon onClick={this.handleOnEdit.bind(this, item.id)} type="edit" />,
+                      <Popconfirm title="确定删除么？" onConfirm={this.handleOnDelete.bind(this, item.id)}>
+                        <Icon type="delete" />
+                      </Popconfirm>
+                    ]
+                  )
+                  : (
+                    [
+                      <span onClick={this.handleOnGiveOrCancel.bind(this, item.id, item.star + 1, item.star_er, 'give')}>
+                        <Icon type="like-o" />&nbsp;{item.star}
+                      </span>, 
+                      <Icon onClick={this.handleOnEdit.bind(this, item.id)} type="edit" />,
+                      <Popconfirm title="确定删除么？" onConfirm={this.handleOnDelete.bind(this, item.id)}>
+                        <Icon type="delete" />
+                      </Popconfirm>
+                    ]
+                  )
+                }
+              >
+                <Meta
+                  avatar={<Avatar src={sevenlee_avatar} />}
+                  title={<div dangerouslySetInnerHTML={{__html: item.content}}></div>}
+                  description={
+                      item.star_er.map((er, idx) => (<span key={idx}>{`${er}, `}</span>))
+                    }
+                />
+              </Card>
+            ))
+          }
+        </div>
+      </Spin>
     )
   }
 }

@@ -9,7 +9,7 @@ import { Layout } from 'antd'
 const { Content }  = Layout
 import Loadable from 'react-loadable'
 
-const Loading = () => (<div className="server-loading"></div>)
+const Loading = () => (<div className="loading-bar"></div>)
 import Header from './components/Header'
 import SiderBlock from './components/SiderBlock'
 

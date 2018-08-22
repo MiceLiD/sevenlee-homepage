@@ -3,8 +3,8 @@ import { render } from 'react-dom'
 import f_Request from '../utils/request.js'
 window.f_Request = f_Request
 
-import 'antd/dist/antd.css'
 import './assets/style/reset.less'
+import 'antd/dist/antd.css'
 import './assets/style/app.less'
 import './assets/img/favicon.ico'
 

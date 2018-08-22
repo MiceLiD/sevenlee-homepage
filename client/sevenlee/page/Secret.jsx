@@ -14,7 +14,7 @@ class Secret extends Component {
   }
   render() {
     return (
-      <div style={{padding: '20px', fontSize: '16px', lineHeight: 2}}>
+      <div className="container secret" style={{padding: '20px', fontSize: '16px', lineHeight: 2}}>
         <Texty
           {...this.state.option}>
           无数的人际交互场景，总是表面的迎合，假装的开心。但，孤独总写在脸上。他们都看得见，却也看不见。
