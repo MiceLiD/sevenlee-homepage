@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import BraftEditor from 'braft-editor'
 import 'braft-editor/dist/braft.css'
 import querystring from 'query-string'
-import { Icon, notification, Input, Button, Row, Col } from 'antd'
+import { Icon, notification, Input, Button, Row, Col, Tag } from 'antd'
 
 class Editor extends Component {
   constructor() {
@@ -107,7 +107,7 @@ class Editor extends Component {
     const { username, code } = this.props.user
     const disabled = !(username === 'lidongsevenlee' && code === '930903')
     const editorProps = {
-      height: 500,
+      height: '100%',
       disabled: disabled,
       contentFormat: 'html',
       contentId: contentId,
@@ -119,26 +119,28 @@ class Editor extends Component {
       }
     }
     const footerStyle = {
-      position: 'absolute', 
-      bottom: '10px', 
-      right: '10px', 
-      fontSize: '25px',
-      cursor: 'pointer',
-      zIndex: 999
+      // position: 'absolute', 
+      // bottom: '10px', 
+      // right: '10px', 
+      width: '80%',
+      margin: '10px'
     }
     return (
-      <div className="container markdown" style={{position: 'relative'}}>
-        <BraftEditor {...editorProps} />
-        <Row style={footerStyle} gutter={10}>
-          <Col span={18}>
-            <Input disabled={disabled} placeholder="键入标题" value={articleTitle} onChange={this.handleOnTitleChange.bind(this)} />
+      <div className="container markdown">
+        <Row style={footerStyle} gutter={10} type="flex" align='middle'>
+          <Col span={6} style={{textAlign: 'right'}}>
+            <Tag>标题: </Tag>
           </Col>
-          <Col span={6}>
-            <Button disabled={disabled} type="primary" onClick={this.handleOnSave.bind(this, contentId)}>
+          <Col span={14}>
+            <Input size="small" disabled={disabled} placeholder="键入标题" value={articleTitle} onChange={this.handleOnTitleChange.bind(this)} />
+          </Col>
+          <Col span={4}>
+            <Button size="small" disabled={disabled} type="primary" onClick={this.handleOnSave.bind(this, contentId)}>
               {contentId ? <Icon type="sync" /> : <Icon type="save" />}
             </Button>
           </Col>
         </Row>
+        <BraftEditor {...editorProps} />
       </div>
     )
   }
