@@ -35,15 +35,15 @@ server {
 ```
 
 ## mysql
-user: www
-pass: www
+user: localsevenlee
+pass: localsevenle
 database: sevenlee
 ```
 CREATE DATABASE sevenlee CHARACTER SET utf8 COLLATE utf8_general_ci;
-CREATE USER 'www'@'%' IDENTIFIED BY 'www';
-GRANT ALL PRIVILEGES ON sevenlee.* to 'www'@'%';
+CREATE USER 'localsevenlee'@'%' IDENTIFIED BY 'localsevenlee';
+GRANT ALL PRIVILEGES ON sevenlee.* to 'localsevenlee'@'%';
 FLUSH PRIVILEGES;
-SHOW GRANTS FOR 'www'@'%';
+SHOW GRANTS FOR 'localsevenlee'@'%';
 ```
 
 tips: npm run sript1 & npm run script2 只有在bash下&符号才生效, powerShell 下请分开执行
