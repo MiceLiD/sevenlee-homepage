@@ -83,9 +83,10 @@ class Main extends Component {
     const { username } = this.props.user
     return (
       <Spin spinning={loading}>
+      {
+        !articleList.length ? <div className="container" style={{width: '100%', textAlign: 'center', paddingTop: '30px'}}>He didn't do anything！</div> : 
         <div className="container seven">
           {
-            !articleList.length ? <div style={{width: '100%', textAlign: 'center', paddingTop: '30px'}}>He didn't do anything！</div> : 
             articleList.map((item, idx) => (
               <Card 
                 style={{breakInside: "avoid", marginTop: idx ? '10px' : 0, boxSizing: 'border-box'}}
@@ -137,6 +138,7 @@ class Main extends Component {
             ))
           }
         </div>
+      }
       </Spin>
     )
   }
