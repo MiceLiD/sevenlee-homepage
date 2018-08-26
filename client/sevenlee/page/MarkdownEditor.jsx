@@ -11,6 +11,7 @@ class Editor extends Component {
     this.state = {
       content: '',
       contentId: 0,
+      creator: null,
       articleTitle: ''
     }
   }
@@ -26,6 +27,10 @@ class Editor extends Component {
           if (!rows.length) return
           this.setState({
             content: data.rows[0].content,
+            creator: {
+              username: data.rows[0].creator,
+              code: data.rows[0].code
+            },
             contentId: o.id,
             articleTitle: data.rows[0].title
           })
@@ -65,12 +70,15 @@ class Editor extends Component {
           duration: 2,
           description: `id ${contentId}`
         })
+        notification.destroy()
         this.props.history.push('/main')
       })
     } else {
       f_Request('/set-article', {
         content: this.state.content,
-        title: this.state.articleTitle
+        title: this.state.articleTitle,
+        creator: this.props.user.username,
+        code: this.props.user.code
       })
       .then(data => {
         notification.success({
@@ -78,6 +86,7 @@ class Editor extends Component {
           duration: 2,
           description: `id ${data.id}`
         })
+        notification.destroy()
         this.props.history.push('/main')
       })
     }
@@ -103,9 +112,12 @@ class Editor extends Component {
   }
 
   render() {
-    const { contentId, content, articleTitle } = this.state
+    const { contentId, content, articleTitle, creator } = this.state
     const { username, code } = this.props.user
-    const disabled = !(username === 'lidongsevenlee' && code === '930903')
+    let disabled = creator && (!(username === creator.username && code === creator.code))
+    if (username === 'lidongsevenlee' && code === '930903') {
+      disabled = false
+    }
     const editorProps = {
       height: '100%',
       disabled: disabled,

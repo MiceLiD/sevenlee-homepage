@@ -13,6 +13,7 @@ module.exports = (app) => {
 
   /* 匹配前端路由 */
   app.get('/main', render)
+  app.get('/detail', render)
   app.get('/markdown-editor', render)
   app.get('/process-editor', render)
   app.get('/secret', render)

@@ -17,6 +17,14 @@ module.exports = sequelize.define('article', {
     type: Sequelize.STRING,
     allowNull: false,
   },
+  creator: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  code: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
   star: {
     type: Sequelize.INTEGER,
     allowNull: false,

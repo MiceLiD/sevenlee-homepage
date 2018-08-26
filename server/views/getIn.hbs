@@ -2,38 +2,169 @@
     <html lang="en">
     <head>
       <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,minimum-scale=1, user-scalable=no">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
       {{{ xIco }}}
+      <title>{{ title }}</title>
       <style>
-        .server-loading {
-          position: fixed;
-          width: 30px;
-          height: 30px;
+        .loading-wrapper {
+          position: absolute;
+          width: 200px;
+          height: 20px;
+          line-height: 20px;
+          text-align: center;
           left: 50%;
           top: 50%;
-          transform: translate(50%, 50%);
-          animation: 1s linear leftToright infinite reverse;
+          transform: translate(-25%, -50%);
         }
-        @keyframes leftToright {
+        .loading-wrapper>span {
+          position: absolute;
+          top: 0;
+          width: 10px;
+        }
+        .loading-wrapper span:nth-child(1) {
+          left: 0;
+          animation: 3s ease-in-out nth1 infinite;
+        }
+        .loading-wrapper span:nth-child(2) {
+          left: 20px;
+          animation: 3s ease-in-out nth2 infinite;
+        }
+        .loading-wrapper span:nth-child(3) {
+          left: 40px;
+          animation: 3s ease-in-out nth3 infinite;
+        }
+        .loading-wrapper span:nth-child(4) {
+          left: 60px;
+          animation: 3s ease-in-out nth4 infinite;
+        }
+        .loading-wrapper span:nth-child(5) {
+          left: 80px;
+          animation: 3s ease-in-out nth5 infinite;
+        }
+
+        @keyframes nth1 {
           0% {
+            left: -20px;
+            opacity: 0;
+            transform: rotateY(90deg)
+          }
+          20% {
+            left: 0;
             opacity: 1;
-            transform: rotateZ(0deg);
+            transform: rotateY(0)
+          }
+          80% {
+            left: 0;
+            opacity: 1;
+            transform: rotateY(0)
           }
           100% {
+            left: 20px;
+            opacity: 0;
+            transform: rotateY(-90deg)
+          }
+        }
+        @keyframes nth2 {
+          0% {
+            left: 0;
+            opacity: 0;
+            transform: rotateY(90deg)
+          }
+          20% {
+            left: 20px;
             opacity: 1;
-            transform: rotateZ(360deg);
+            transform: rotateY(0)
+          }
+          80% {
+            left: 20px;
+            opacity: 1;
+            transform: rotateY(0)
+          }
+          100% {
+            left: 40px;
+            opacity: 0;
+            transform: rotateY(-90deg)
+          }
+        }
+        @keyframes nth3 {
+          0% {
+            left: 20px;
+            opacity: 0;
+            transform: rotateY(90deg)
+          }
+          20% {
+            left: 40px;
+            opacity: 1;
+            transform: rotateY(0)
+          }
+          80% {
+            left: 40px;
+            opacity: 1;
+            transform: rotateY(0)
+          }
+          100% {
+            left: 60px;
+            opacity: 0;
+            transform: rotateY(-90deg)
+          }
+        }
+        @keyframes nth4 {
+          0% {
+            left: 40px;
+            opacity: 0;
+            transform: rotateY(90deg)
+          }
+          20% {
+            left: 60px;
+            opacity: 1;
+            transform: rotateY(0)
+          }
+          80% {
+            left: 60px;
+            opacity: 1;
+            transform: rotateY(0)
+          }
+          100% {
+            left: 80px;
+            opacity: 0;
+            transform: rotateY(-90deg)
+          }
+        }
+        @keyframes nth5 {
+          0% {
+            left: 60px;
+            opacity: 0;
+            transform: rotateY(90deg)
+          }
+          20% {
+            left: 80px;
+            opacity: 1;
+            transform: rotateY(0)
+          }
+          80% {
+            left: 80px;
+            opacity: 1;
+            transform: rotateY(0)
+          }
+          100% {
+            left: 100px;
+            opacity: 0;
+            transform: rotateY(-90deg)
           }
         }
       </style>
-      <title>{{ title }}</title>
     </head>
     <body>
       <div id="getIn">
-        <svg t="1534147313712" class="server-loading" style="" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1396" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style type="text/css"></style></defs>
-          <path d="M960 576 832 576C796.672 576 768 547.328 768 512 768 476.672 796.672 448 832 448L960 448C995.328 448 1024 476.672 1024 512 1024 547.328 995.328 576 960 576ZM783.552 331.008C758.528 355.968 718.016 355.968 692.992 331.008 668.032 305.984 668.032 265.472 692.992 240.448L783.552 149.952C808.512 124.992 849.024 124.992 874.048 149.952 899.008 174.976 899.008 215.488 874.048 240.448L783.552 331.008ZM512 1024C476.672 1024 448 995.392 448 960L448 832C448 796.672 476.672 768 512 768 547.328 768 576 796.672 576 832L576 960C576 995.392 547.328 1024 512 1024ZM512 256C476.672 256 448 227.392 448 192L448 64C448 28.608 476.672 0 512 0 547.328 0 576 28.608 576 64L576 192C576 227.392 547.328 256 512 256ZM240.448 874.048C215.488 899.008 174.976 899.008 149.952 874.048 124.992 849.088 124.992 808.576 149.952 783.552L240.448 693.056C265.472 668.032 305.984 668.032 331.008 693.056 355.968 718.016 355.968 758.528 331.008 783.552L240.448 874.048ZM240.448 331.008 149.952 240.448C124.992 215.488 124.992 174.976 149.952 149.952 174.976 124.992 215.488 124.992 240.448 149.952L331.008 240.448C355.968 265.472 355.968 305.984 331.008 331.008 305.984 355.968 265.472 355.968 240.448 331.008ZM256 512C256 547.328 227.328 576 192 576L64 576C28.672 576 0 547.328 0 512 0 476.672 28.672 448 64 448L192 448C227.328 448 256 476.672 256 512ZM783.552 693.056 874.048 783.552C899.008 808.576 899.008 849.088 874.048 874.048 849.024 899.008 808.512 899.008 783.552 874.048L692.992 783.552C668.032 758.528 668.032 718.016 692.992 693.056 718.016 668.032 758.528 668.032 783.552 693.056Z" fill="#d4237a" p-id="1397"></path>
-        </svg>
+        <div class="loading-wrapper">
+          <span>S</span>
+          <span>E</span>
+          <span>V</span>
+          <span>E</span>
+          <span>N</span>
+        </div>
       </div>
       {{{ xScript 'getIn' }}}
       {{{ xScript 'vendors~getIn' }}}

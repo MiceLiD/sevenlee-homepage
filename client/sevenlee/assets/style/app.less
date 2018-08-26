@@ -1,6 +1,6 @@
 
 @max_width: 1000px;
-.app {
+#app {
   width: 100%;
   height: 100%;
   @media all and (max-width: 540px) {
@@ -78,7 +78,7 @@
   }
 
   /* content */
-  .wrapper {
+  .app-wrapper {
     max-width: @max_width;
     padding: 75px 15px 15px 15px;
     margin: 0 auto;
@@ -91,53 +91,58 @@
     }
     .content-wrapper {
       display: flex;
-      align-items: top;
-      height: 100%;
       justify-content: space-between;
+      .top-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        z-index: 99;
+        color: rgba(0,0,0,.5);
+        font-size: 30px;
+        transition: opacity .3s ease-in-out;
+      }
       .content {
         box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);
+        @media all and (max-width: 540px) {
+          & {
+            box-shadow: unset;
+          }
+        }
         flex: 1;
-        overflow-y: scroll;
+        width: 100%;
+        height: 100%;
         background-color: #fff;
+        position: relative;
         .container {
           width: 100%;
-          overflow-y: scroll;
-        }
-        .seven-panel {
-          width: 100%;
           height: 100%;
-          box-sizing: border-box;
-          .seven {
-            padding: 10px;
-            column-count: 2;
-            column-gap: 10px;
-            @media all and (max-width: 980px) {
-              & {
-              column-count: 1;
-              }
+          overflow-y: scroll;
+          overflow-x: hidden;
+          min-height: 90vh;
+        }
+        .seven {
+          padding: 10px;
+          column-count: 2;
+          column-gap: 10px;
+          @media all and (max-width: 980px) {
+            & {
+            column-count: 1;
             }
           }
-          .detail {
-            padding: 10px;
-            .back-btn {
-              position: absolute;
-              left: 10px;
-              top: 70px;
-              z-index: 99;
-              color: rgba(0,0,0,.35);
-              font-size: 24px;
+        }
+        .detail {
+          padding: 10px;
+          
+          article {
+            header {
+              margin-top: 20px;
+              text-align: center;
+              h1 {
+                font-size: 24px;
+              }
             }
-            article {
-              header {
-                margin-top: 20px;
-                text-align: center;
-                h1 {
-                  font-size: 24px;
-                }
-              }
-              div {
-                text-indent: 20px;
-              }
+            div {
+              text-indent: 20px;
             }
           }
         }

@@ -2,6 +2,7 @@ const Article = require('../../db/modal/Article')
 
 module.exports = async (ctx, next) => {
   const { id } = ctx.request.body
+  await Article.sync()
   await Article.destroy({
     where: { id }
   }).then(data => {

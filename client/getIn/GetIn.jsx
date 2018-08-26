@@ -30,8 +30,9 @@ class GetIn extends Component {
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
-      <div className="getIn-wrapper" style={{width: '60%', margin: '100px auto'}}>
-        Tell me who you are:
+      <div className="getIn-wrapper">
+        <h5>Welcome, Tourist!</h5>
+        <p>Please tell me who you are?</p>
         <Form onSubmit={this.handleSubmit.bind(this)} className="getIn-form">
           <FormItem>
             {getFieldDecorator('username', {

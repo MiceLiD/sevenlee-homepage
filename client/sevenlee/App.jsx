@@ -4,7 +4,7 @@ import {
   Route
 } from 'react-router-dom'
 
-import { Layout } from 'antd'
+import { Layout, Icon } from 'antd'
 
 const { Content }  = Layout
 import Loadable from 'react-loadable'
@@ -29,33 +29,64 @@ const MainAsync = Loadable({
   loader: () => import(`./page/Main`),
   loading: Loading
 })
+const ArticleDetail = Loadable({
+  loader: () => import(`./page/ArticleDetail`),
+  loading: Loading
+})
 
 
 
 class App extends Component {
   constructor() {
     super()
-    this.state = {}
+    this.state = {
+      showTopBtn: false
+    }
+  }
+  
+  componentDidMount() {
+    window.onscroll = () => {
+      if (window.scrollY) {
+        this.setState({ showTopBtn: true })
+      } else {
+        this.setState({ showTopBtn: false })
+      }
+    }
+  }
+  handleOnGoTop() {
+    const _this = this
+    this.timmer = requestAnimationFrame(function fn(){
+      let s = window.scrollY
+      if(s > 0){
+          s -= 100
+          window.scroll(0, s)
+          _this.timmer = requestAnimationFrame(fn)
+      }
+    })
+    
   }
   render() {
     const { user } = this.props
+    const { showTopBtn } = this.state
     return (
-      <div className="app">
-        <Router>
-          <div className="wrapper">
-            <Header user={ user } />
-            <div className="content-wrapper">
-              <Content className="content">
-                <Route path="/main" render={props => <MainAsync {...props} user={ user } />}></Route>
-                <Route path="/markdown-editor" render={props => <MarkdownEditorAsync {...props} user={ user } />  }></Route>
-                <Route path="/process-editor" component={ ProcessEditorAsync }></Route>
-                <Route path="/secret" component={ SecretAsync }></Route>
-              </Content>
-              <SiderBlock />
+      <Router>
+        <div className="app-wrapper">
+          <Header user={ user } />
+          <div className="content-wrapper" >
+            <Content className="content">
+              <Route path="/main" render={props => <MainAsync {...props} user={ user } />}></Route>
+              <Route path="/detail" render={props => <ArticleDetail {...props} user={ user } />}></Route>
+              <Route path="/markdown-editor" render={props => <MarkdownEditorAsync {...props} user={ user } />  }></Route>
+              <Route path="/process-editor" component={ ProcessEditorAsync }></Route>
+              <Route path="/secret" component={ SecretAsync }></Route>
+            </Content>
+            <SiderBlock />
+            <div className="top-btn" style={{opacity: showTopBtn ? 1 : 0}} onClick={this.handleOnGoTop.bind(this)}>
+              <Icon type="up-square" />
             </div>
           </div>
-        </Router>
-      </div>
+        </div>
+      </Router>
     )
   }
 }
