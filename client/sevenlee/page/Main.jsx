@@ -54,8 +54,8 @@ class Main extends Component {
     this.props.history.replace(`/markdown-editor?id=${id}`)
   }
   handleOnEye(id) {
-    window.open(`/detail?id=${id}`, '_blank')
-    // this.props.history.replace(`/detail?id=${id}`)
+    // window.open(`/detail?id=${id}`)
+    this.props.history.push(`/detail?id=${id}`)
   }
   handleOnDelete(id) {
     const { username, code } = this.props.user
@@ -104,7 +104,7 @@ class Main extends Component {
                   (
                     [
                       <span onClick={this.handleOnGiveOrCancel.bind(this, item.id, item.star - 1, item.star_er, 'cancel', item.star_er.indexOf(username))}>
-                        <Icon type="like" />&nbsp;{item.star}
+                        <Icon type="like" style={{color: '#752cd4'}} />&nbsp;{item.star}
                       </span>, 
                       <Icon onClick={this.handleOnEye.bind(this, item.id)} type="eye-o" />,
                       <Icon onClick={this.handleOnEdit.bind(this, item.id)} type="edit" />,
@@ -129,10 +129,13 @@ class Main extends Component {
               >
                 <Meta
                   title={item.title}
-                  description={`created by ${item.creator}`}
+                  description={
+                    <div>
+                      <Icon type="user" /> {item.creator}
+                    </div>}
                 />
                 <p style={{marginTop: '20px'}}>
-                  <Icon type="heart-o" />&nbsp;{item.star_er.map((er, idx) => (<span key={idx}>{`${er} `}</span>))}
+                  <Icon type="heart" theme="twoTone" style={{color: '#eb2f96'}} />&nbsp;{item.star_er.map((er, idx) => (<span key={idx}>{`${er} `}</span>))}
                 </p>
               </Card>
             ))

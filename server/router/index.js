@@ -44,7 +44,7 @@ module.exports = (app) => {
   app.post('/api/set-article', require('../controller/setArticle'))
   app.post('/api/get-article', require('../controller/getArticle'))
   app.post('/api/update-article', require('../controller/updateArticle'))
-   app.post('/api/del-article', require('../controller/delArticle'))
+  app.post('/api/del-article', require('../controller/delArticle'))
 
   app.post('/api/upload', require('../controller/upload'))
 }
