@@ -1,10 +1,12 @@
 # sevenlee's homepage
+# node
+node > 8
 
 ## dev mode
 ```
+npm install
 npm run dev
 ```
-webpack-dev-server & node 端口配置在config/index.js
 
 ## prod mode
 ```
@@ -35,15 +37,41 @@ server {
 ```
 
 ## mysql
-user: localsevenlee
-pass: localsevenle
+# develop
+user: www
+pass: www
 database: sevenlee
 ```
 CREATE DATABASE sevenlee CHARACTER SET utf8 COLLATE utf8_general_ci;
-CREATE USER 'localsevenlee'@'%' IDENTIFIED BY 'localsevenlee';
-GRANT ALL PRIVILEGES ON sevenlee.* to 'localsevenlee'@'%';
+CREATE USER 'www'@'%' IDENTIFIED BY 'www';
+GRANT ALL PRIVILEGES ON sevenlee.* to 'www'@'%';
 FLUSH PRIVILEGES;
-SHOW GRANTS FOR 'localsevenlee'@'%';
+SHOW GRANTS FOR 'www'@'%';
 ```
 
-tips: npm run sript1 & npm run script2 只有在bash下&符号才生效, powerShell 下请分开执行
+# production
+```
+sh ./generateSecret.sh // ef678sff6sd6s...
+vim .env // create .env file
+```
+In .env file, Input this content:
+SESSIONZ_SECRET=ef678sff6sd6s...
+DB_USERNAME=sevenlee
+DB_PASSWORD='Your password'
+
+mysql:
+user: sevenlee
+pass: xxx
+database: sevenlee
+```
+CREATE DATABASE sevenlee CHARACTER SET utf8 COLLATE utf8_general_ci;
+CREATE USER 'sevenlee'@'%' IDENTIFIED BY 'xxx';
+GRANT ALL PRIVILEGES ON sevenlee.* to 'sevenlee'@'%';
+FLUSH PRIVILEGES;
+SHOW GRANTS FOR 'sevenlee'@'%';
+```
+
+# 附
+开启MySQL 3306端口
+1. 阿里云请新建安全组规则，开启3306端口
+2. 命令行：iptables -I INPUT -p tcp --dport 3306 -j ACCEPT

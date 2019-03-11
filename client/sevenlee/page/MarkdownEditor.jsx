@@ -71,7 +71,7 @@ class Editor extends Component {
           description: `id ${contentId}`
         })
         notification.destroy()
-        this.props.history.push('/main')
+        this.props.history.push('/sevenlee/main')
       })
     } else {
       f_Request('/set-article', {
@@ -87,7 +87,7 @@ class Editor extends Component {
           description: `id ${data.id}`
         })
         notification.destroy()
-        this.props.history.push('/main')
+        this.props.history.push('/sevenlee/main')
       })
     }
   }
