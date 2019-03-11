@@ -8,7 +8,7 @@ const render = async ctx => {
 
 module.exports = (app) => {
   app.get('/', ctx => {
-    ctx.redirect('/main')
+    ctx.redirect('/sevenlee/main')
   })
 
   /* 匹配前端路由 */

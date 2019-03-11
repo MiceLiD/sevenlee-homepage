@@ -24,13 +24,13 @@ export default class Header extends Component {
     const pathname = window.location.pathname
     let menuName = 'Seven'
     switch (pathname) {
-      case '/main':
+      case '/sevenlee/main':
         menuName = 'Seven'
         break;
-      case '/markdown-editor':
+      case '/sevenlee/markdown-editor':
         menuName = 'Markdown'
         break;
-      case '/secret':
+      case '/sevenlee/secret':
         menuName = 'Secret'
         break;
       default:
@@ -39,13 +39,13 @@ export default class Header extends Component {
     const menu = (
       <Menu>
         <Menu.Item>
-          <NavLink style={{ textDecoration: 'none' }} isActive={this.handleActiveRouter.bind(this, '/main')} to="/main">Seven</NavLink>
+          <NavLink style={{ textDecoration: 'none' }} isActive={this.handleActiveRouter.bind(this, '/sevenlee/main')} to="/sevenlee/main">Seven</NavLink>
         </Menu.Item>
         <Menu.Item>
-          <NavLink style={{ textDecoration: 'none' }} isActive={this.handleActiveRouter.bind(this, '/markdown-editor')} to="/markdown-editor">Markdown</NavLink>
+          <NavLink style={{ textDecoration: 'none' }} isActive={this.handleActiveRouter.bind(this, '/sevenlee/markdown-editor')} to="/sevenlee/markdown-editor">Markdown</NavLink>
         </Menu.Item>
         <Menu.Item>
-          <NavLink style={{ textDecoration: 'none' }} isActive={this.handleActiveRouter.bind(this, '/secret')} to="/secret">Secret</NavLink>
+          <NavLink style={{ textDecoration: 'none' }} isActive={this.handleActiveRouter.bind(this, '/sevenlee/secret')} to="/sevenlee/secret">Secret</NavLink>
         </Menu.Item>
       </Menu>
     )
@@ -63,16 +63,16 @@ export default class Header extends Component {
           <div className="navbar">
             <ul>
               <li>
-                <NavLink style={{ textDecoration: 'none' }} isActive={this.handleActiveRouter.bind(this, '/main')} to="/main">Seven</NavLink>
+                <NavLink style={{ textDecoration: 'none' }} isActive={this.handleActiveRouter.bind(this, '/sevenlee/main')} to="/sevenlee/main">Seven</NavLink>
               </li>
               <li>
-                <NavLink disabled style={{ textDecoration: 'none' }} isActive={this.handleActiveRouter.bind(this, '/process-editor')} to="/process-editor">Tapu</NavLink>
+                <NavLink disabled style={{ textDecoration: 'none' }} isActive={this.handleActiveRouter.bind(this, '/sevenlee/process-editor')} to="/sevenlee/process-editor">Tapu</NavLink>
               </li>
               <li>
-                <NavLink style={{ textDecoration: 'none' }} isActive={this.handleActiveRouter.bind(this, '/markdown-editor')} to="/markdown-editor">Markdown</NavLink>
+                <NavLink style={{ textDecoration: 'none' }} isActive={this.handleActiveRouter.bind(this, '/sevenlee/markdown-editor')} to="/sevenlee/markdown-editor">Markdown</NavLink>
               </li>
               <li>
-                <NavLink style={{ textDecoration: 'none' }} isActive={this.handleActiveRouter.bind(this, '/secret')} to="/secret">Secret</NavLink>
+                <NavLink style={{ textDecoration: 'none' }} isActive={this.handleActiveRouter.bind(this, '/sevenlee/secret')} to="/sevenlee/secret">Secret</NavLink>
               </li>
             </ul>
           </div>

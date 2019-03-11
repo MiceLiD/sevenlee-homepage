@@ -51,11 +51,11 @@ class Main extends Component {
       })
   }
   handleOnEdit(id) {
-    this.props.history.replace(`/markdown-editor?id=${id}`)
+    this.props.history.replace(`/sevenlee/markdown-editor?id=${id}`)
   }
   handleOnEye(id) {
     // window.open(`/detail?id=${id}`)
-    this.props.history.push(`/detail?id=${id}`)
+    this.props.history.push(`/sevenlee/detail?id=${id}`)
   }
   handleOnDelete(id) {
     const { username, code } = this.props.user

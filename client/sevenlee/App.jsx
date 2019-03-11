@@ -74,11 +74,11 @@ class App extends Component {
           <Header user={ user } />
           <div className="content-wrapper" >
             <Content className="content">
-              <Route path="/main" render={props => <MainAsync {...props} user={ user } />}></Route>
-              <Route path="/detail" render={props => <ArticleDetail {...props} user={ user } />}></Route>
-              <Route path="/markdown-editor" render={props => <MarkdownEditorAsync {...props} user={ user } />  }></Route>
-              <Route path="/process-editor" component={ ProcessEditorAsync }></Route>
-              <Route path="/secret" component={ SecretAsync }></Route>
+              <Route path="/sevenlee/main" render={props => <MainAsync {...props} user={ user } />}></Route>
+              <Route path="/sevenlee/detail" render={props => <ArticleDetail {...props} user={ user } />}></Route>
+              <Route path="/sevenlee/markdown-editor" render={props => <MarkdownEditorAsync {...props} user={ user } />  }></Route>
+              <Route path="/sevenlee/process-editor" component={ ProcessEditorAsync }></Route>
+              <Route path="/sevenlee/secret" component={ SecretAsync }></Route>
             </Content>
             <SiderBlock />
             <div className="top-btn" style={{opacity: showTopBtn ? 1 : 0}} onClick={this.handleOnGoTop.bind(this)}>

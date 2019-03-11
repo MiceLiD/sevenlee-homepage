@@ -5,6 +5,6 @@ module.exports = {
   moduleName: 'sevenlee',
   nodeSocket: path.join(__dirname, '../shared/sockets/node.sock'),
   nodePidPath: path.join(__dirname, '../shared/pids/node.pid'),
-  appPrefix: '',
+  appPrefix: '/sevenlee',
   logDir: path.join(__dirname, '../shared/logs')
 }
