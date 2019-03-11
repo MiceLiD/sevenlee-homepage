@@ -1,6 +1,6 @@
 const render = async ctx => {
   if (ctx.session && !ctx.session.username) {
-    ctx.redirect('/login')
+    ctx.redirect('/sevenlee/login')
   } else {
     await ctx.render('index', { title: 'sevenlee', user: JSON.stringify(ctx.session) })
   }
