@@ -28,7 +28,7 @@ module.exports = (app) => {
   })
   app.get('/getout', async ctx => {
     ctx.session = null
-    ctx.redirect('/login')
+    ctx.redirect('/sevenlee/login')
   })
 
   /* api */
