@@ -27,7 +27,7 @@ module.exports = {
     password: ENV['DB_PASSWORD'],
     database: 'sevenlee',
     options: {
-      host: '66.42.97.63',
+      host: '47.100.101.73',
       port: 3306,
       dialect: 'mysql',
       logging: false,
