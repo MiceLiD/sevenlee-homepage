@@ -23,7 +23,7 @@ module.exports = (app) => {
     if (ctx.session && !ctx.session.username) {
       await ctx.render('getIn', { title: 'getIn' })
     } else {
-      ctx.redirect('/')
+      ctx.redirect('/sevenlee')
     }
   })
   app.get('/getout', async ctx => {
