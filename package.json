@@ -22,6 +22,7 @@
     "braft-editor": "^1.9.8",
     "busboy": "^0.2.14",
     "dotenv": "^6.0.0",
+    "draft-js": "^0.10.5",
     "handlebars": "^4.0.11",
     "koa": "^2.5.1",
     "koa-bodyparser": "^4.2.1",
